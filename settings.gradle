@@ -1,1 +1,1 @@
-include ':app', ':library', ':lib-retrofit-download', ':testretrofitdownload'
+include ':app', ':library', ':lib-retrofit-download', ':testretrofitdownload', ':systemdownloadmanager'
