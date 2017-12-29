@@ -7,6 +7,7 @@ import android.util.Log;
 import android.view.View;
 import android.widget.ProgressBar;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.hongfans.download.DownloadManager;
 import com.hongfans.download.DownloadTask;
@@ -48,6 +49,16 @@ public class MainActivity extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 DownloadManager.getInstance().cancel();
+            }
+        });
+        findViewById(R.id.btn_drop).setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                File file = new File(DownloadManager.getInstance().getTask().getPath());
+                if (file.exists()) {
+                    file.delete();
+                    Toast.makeText(MainActivity.this, "成功删除文件", Toast.LENGTH_SHORT).show();
+                }
             }
         });
     }

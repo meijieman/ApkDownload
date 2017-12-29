@@ -114,6 +114,11 @@ public class DownloadManager {
                     file.delete();
                     task.setSoFarBytes(0L);
                 }
+            } else if(task.getTotalBytes() < task.getSoFarBytes()){
+                Log.i(TAG, "下载记录出错");
+            } else {
+                Log.i(TAG, "load: 继续下载 " + task.getSoFarBytes() + "/" + task.getTotalBytes());
+
             }
         }
 
@@ -146,10 +151,10 @@ public class DownloadManager {
                         throw new RuntimeException("the TotalBytes in sp is 0");
                     }
                     if (task.getSoFarBytes() != file.length()) {
-                        // 文件大小与记录大小不一致，删除文件和记录
-                        file.delete();
-                        mPreferences.edit().remove(url).commit();
-                        Log.w(TAG, "getExistTask: 文件大小与记录大小不一致，删除文件和记录");
+                        // 文件已下载大小与记录大小不一致，更新记录大小为文件大小已下载大小
+                        task.setSoFarBytes(file.length());
+                        saveSP(task);
+                        Log.w(TAG, "getExistTask: 文件大小与记录大小不一致，更新记录大小为文件大小已下载大小");
                     } else {
                         Log.i(TAG, "getExistTask: 文件大小与记录大小一致");
                     }
@@ -168,6 +173,10 @@ public class DownloadManager {
         }
 
         return null;
+    }
+
+    public DownloadTask getTask(){
+        return mCenter.getTask();
     }
 
     public void cancel() {

@@ -103,12 +103,12 @@ public class DownloadTask {
 
     public DownloadTask fromJson(String json) throws JSONException {
         JSONObject jo = new JSONObject(json);
-        setUrl(jo.optString("mUrl"));
-        setPath(jo.optString("mPath"));
-        setFilename(jo.optString("mFilename"));
-        setTotalBytes(jo.optLong("mTotalBytes"));
-        setSoFarBytes(jo.optLong("mSoFarBytes"));
-        setMD5(jo.optString("mMD5"));
+        mUrl = jo.optString("mUrl");
+        mPath = jo.optString("mPath");
+        mFilename = jo.optString("mFilename");
+        mTotalBytes = jo.optLong("mTotalBytes");
+        mSoFarBytes = jo.optLong("mSoFarBytes");
+        mMD5 = jo.optString("mMD5");
         return this;
     }
 
