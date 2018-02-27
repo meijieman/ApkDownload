@@ -4,3 +4,7 @@
 
 ## systemdownloadmanager
 基于 android.app.DownloadManager 封装的下载，进度更新显示在 Notification
+
+## 基于 HttpURLConnection 的下载框架
+ * GitHub: https://github.com/AndroidKun
+ * CSDN: http://blog.csdn.net/a1533588867
